@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#17131a">
+<title>I Love You ♡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cairo:wght@500;700&display=swap');
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 42%,#45343a,#211b21 62%,#100e13);font-family:Cairo,sans-serif;color:#fff;overflow:hidden;touch-action:pan-y}
+.scene{min-height:100svh;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+.top{position:absolute;top:26px;left:12px;right:12px;text-align:center;z-index:2}
+.top h1{font-size:clamp(22px,5vw,32px);margin:0;color:#f0d5b7;font-weight:500}
+.top p{font-size:12px;color:#c9b9b9;margin:5px 0}
+.table{position:absolute;left:0;right:0;top:0;bottom:0;background:radial-gradient(ellipse at 50% 52%,#59434a 0%,#30242b 55%,#17131a 100%)}
+.table:after{content:"";position:absolute;inset:0;opacity:.12;background-image:repeating-linear-gradient(0deg,transparent 0 4px,#fff 5px,transparent 6px)}
+.workarea{position:relative;width:min(88vw,620px);height:min(68vw,390px);min-height:250px;display:flex;align-items:center;justify-content:center;margin-top:25px}
+.letter-under{position:absolute;width:65%;height:64%;background:#fffdf7;box-shadow:0 12px 35px #0008;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.letter-under:before{content:"";position:absolute;inset:12px;border:1px solid #eee4d8}
+.message{font-family:'Great Vibes',cursive;color:#31558a;font-size:clamp(44px,10vw,78px);text-align:center;opacity:0;transform:rotate(-3deg);white-space:nowrap}
+.message span{display:block;font-size:.48em;margin-top:-5px;text-align:right;padding-right:18px}
+.letter-under.show .message{opacity:1;animation:write 3.4s steps(18,end) both}
+@keyframes write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.paper{position:absolute;width:65%;height:64%;background:#fffaf0;box-shadow:0 12px 35px #0009;z-index:3;overflow:hidden;transition:opacity .2s}
+.paper:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(135deg,#fffaf0 0 7px,#f9f1e4 8px 9px)}
+.paper:after{content:"";position:absolute;inset:0;border:1px solid #e8d8c4}
+.paper-lines{position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0 30px,#e8d9c8 31px,transparent 32px);opacity:.3}
+.seal{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);width:47px;height:47px;border-radius:50%;display:grid;place-items:center;color:#ffd7d0;font-size:25px;background:radial-gradient(circle at 32% 25%,#ed8d91,#a92e43 68%,#641c30);box-shadow:inset 0 2px 6px #fff8,0 4px 8px #0005}
+.paper.burning{opacity:0;transition:opacity 1.3s ease}
+.paper.burning .seal{opacity:0}
+.lighter{position:absolute;width:48px;height:91px;z-index:8;left:85%;top:54%;transform:translate(-50%,-50%);touch-action:none;cursor:grab;user-select:none}
+.lighter:active{cursor:grabbing}
+.body{position:absolute;bottom:0;left:4px;width:40px;height:66px;border-radius:8px 8px 7px 7px;background:linear-gradient(90deg,#9ba4a6,#e5e1d9 42%,#9b9d9a);border:1px solid #eee;box-shadow:inset -4px 0 5px #5555,0 4px 9px #0006}
+.body:after{content:"";position:absolute;left:0;right:0;top:26px;height:1px;background:#777}
+.cap{position:absolute;top:16px;left:10px;width:28px;height:15px;background:linear-gradient(#dedbd3,#777);border-radius:4px 4px 2px 2px;border:1px solid #eee}
+.flame{position:absolute;top:0;left:16px;width:16px;height:27px;opacity:0;transform:scale(.2);transform-origin:bottom;background:radial-gradient(ellipse at 50% 75%,#fff 0 15%,#ffe57a 32%,#ff8c35 66%,transparent 72%);filter:drop-shadow(0 0 9px #ff9a36)}
+.lighter.lit .flame{opacity:1;transform:scale(1);animation:flicker .12s infinite alternate}
+@keyframes flicker{to{transform:scale(.85,1.1) rotate(5deg)}}
+.hint{position:absolute;bottom:24px;left:15px;right:15px;text-align:center;color:#e4d5d3;font-size:13px}
+.reset{position:absolute;bottom:62px;left:50%;transform:translateX(-50%);border:1px solid #d6b78c;background:#ffffff12;color:#fff;border-radius:22px;padding:7px 19px;font:12px Cairo;display:none;z-index:12}
+.spark{position:absolute;width:7px;height:7px;border-radius:50%;background:#ffc45c;box-shadow:0 0 12px 4px #ff702c;pointer-events:none;z-index:9;animation:fly .8s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--x),var(--y)) scale(0);opacity:0}}
+.fire{position:absolute;z-index:6;width:28px;height:45px;pointer-events:none;transform:translate(-50%,-85%);background:radial-gradient(ellipse at 50% 78%,#fff7bd 0 10%,#ffd44f 25%,#ff7b27 53%,transparent 73%);filter:drop-shadow(0 0 8px #ff7b27);animation:fire .16s infinite alternate}
+@keyframes fire{to{transform:translate(-50%,-85%) scale(.78,1.14) rotate(7deg)}}
+.finish{position:absolute;inset:0;z-index:10;display:none;align-items:center;justify-content:center;flex-direction:column;background:#17131a99;backdrop-filter:blur(3px);text-align:center}
+.finish.show{display:flex;animation:fade .8s both}
+.finish h2{font-family:'Great Vibes',cursive;font-size:clamp(45px,10vw,75px);font-weight:400;margin:0;color:#f2d6ac}
+.finish p{font-size:13px;color:#eee;margin:5px}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@media(max-width:480px){.workarea{width:94vw;height:78vw}.letter-under,.paper{width:74%;height:60%}.lighter{left:88%}.hint{bottom:18px}}
+</style></head>
+<body>
+<div class="table"></div>
+<div class="scene">
+ <header class="top"><h1>A little letter for you ♡</h1><p>Drag the lighter and let the magic happen</p></header>
+ <div class="workarea" id="workarea">
+  <div class="letter-under" id="under"><div class="message" id="message">I love you<span>♡</span></div></div>
+  <div class="paper" id="paper"><div class="paper-lines"></div><div class="seal">♥</div></div>
+  <div class="lighter" id="lighter"><div class="flame"></div><div class="cap"></div><div class="body"></div></div>
+ </div>
+ <div class="hint" id="hint">اسحب الولاعة وقرّب النار من حواف الجواب 🔥</div>
+ <button class="reset" id="reset">Try again ↺</button>
+ <div class="finish" id="finish"><h2>I love you ♡</h2><p>A little spark, a big feeling.</p></div>
+</div>
+<script>
+const area=document.getElementById('workarea'),lighter=document.getElementById('lighter'),paper=document.getElementById('paper'),under=document.getElementById('under'),hint=document.getElementById('hint'),reset=document.getElementById('reset');
+let drag=false,lit=false,done=false,points=0,last=null,edgeHits=new Set(),fires=[];
+function local(e){const r=area.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}}
+function setLighter(x,y){lighter.style.left=x+'px';lighter.style.top=y+'px'}
+function flameAt(x,y){
+ const f=document.createElement('div');f.className='fire';f.style.left=x+'px';f.style.top=y+'px';area.appendChild(f);fires.push(f);setTimeout(()=>f.remove(),850);
+ for(let i=0;i<3;i++){const s=document.createElement('i');s.className='spark';s.style.left=x+(Math.random()*12-6)+'px';s.style.top=y+(Math.random()*10-5)+'px';s.style.setProperty('--x',(Math.random()*55-27)+'px');s.style.setProperty('--y',(-20-Math.random()*55)+'px');area.appendChild(s);setTimeout(()=>s.remove(),850)}
+}
+function ignite(){lit=true;lighter.classList.add('lit')}
+function extinguish(){lit=false;lighter.classList.remove('lit')}
+function checkBurn(x,y){
+ const p=paper.getBoundingClientRect(),a=area.getBoundingClientRect();
+ const px=p.left-a.left,py=p.top-a.top,pw=p.width,ph=p.height;
+ const inside=x>px-8&&x<px+pw+8&&y>py-20&&y<py+ph+10;
+ if(!inside)return;
+ flameAt(x,y);
+ const dx=Math.min(Math.abs(x-px),Math.abs(x-(px+pw))),dy=Math.min(Math.abs(y-py),Math.abs(y-(py+ph)));
+ const nearEdge=Math.min(dx,dy)<43;
+ if(nearEdge){
+   const side=dx<dy?(Math.abs(x-px)<Math.abs(x-(px+pw))?'L':'R'):(Math.abs(y-py)<Math.abs(y-(py+ph))?'T':'B');
+   const along=side==='L'||side==='R'?(y-py)/ph:(x-px)/pw;
+   const segment=Math.max(0,Math.min(4,Math.floor(along*5)));
+   edgeHits.add(side+segment);
+   points=Math.min(100,edgeHits.size/20*100);
+   hint.textContent='النار بتاكل أطراف الورقة… كمّل حوالين الجواب 🔥';
+   if(edgeHits.size>=11)burnAway();
+ }
+}
+function burnAway(){if(done)return;done=true;paper.classList.add('burning');hint.textContent='الورقة اتحرقت…';setTimeout(()=>{under.classList.add('show');document.getElementById('message').style.opacity='1';hint.textContent='♡';reset.style.display='block'},1250)}
+lighter.addEventListener('pointerdown',e=>{e.preventDefault();drag=true;lighter.setPointerCapture(e.pointerId);ignite();const p=local(e);setLighter(p.x,p.y);checkBurn(p.x,p.y)});
+lighter.addEventListener('pointermove',e=>{if(!drag)return;const p=local(e);setLighter(p.x,p.y);checkBurn(p.x,p.y)});
+function stop(){drag=false;extinguish()}
+lighter.addEventListener('pointerup',stop);lighter.addEventListener('pointercancel',stop);
+reset.addEventListener('click',()=>{done=false;edgeHits.clear();points=0;paper.classList.remove('burning');under.classList.remove('show');document.getElementById('message').style.opacity='0';setLighter(area.clientWidth*.85,area.clientHeight*.54);hint.textContent='اسحب الولاعة وقرّب النار من حواف الجواب 🔥';reset.style.display='none'});
+window.addEventListener('resize',()=>{if(!drag&&!done)setLighter(area.clientWidth*.85,area.clientHeight*.54)});
+setLighter(area.clientWidth*.85,area.clientHeight*.54);
+</script></body></html>
